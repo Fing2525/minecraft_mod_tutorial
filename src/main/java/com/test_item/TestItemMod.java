@@ -18,7 +18,7 @@ import com.test_item.ModItem;
 @Mod(TestItemMod.MOD_ID)
 public class TestItemMod {
 
-    public static final String MOD_ID = "test_item";
+    public static final String MOD_ID = "test_mod";
 
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MOD_ID);
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("test_block", p -> p.mapColor(MapColor.STONE));

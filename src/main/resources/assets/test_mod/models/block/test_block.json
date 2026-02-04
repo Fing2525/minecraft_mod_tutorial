@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "test_item:block/test_block"
+    "all": "test_mod:block/test_block"
   }
 }
