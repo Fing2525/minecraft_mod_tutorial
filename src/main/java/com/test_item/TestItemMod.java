@@ -1,9 +1,12 @@
 package com.test_item;
 
 
+import com.test_item.custom.Sword_test;
+
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ToolMaterial;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -12,7 +15,6 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import com.test_item.ModItem;
 
 
 @Mod(TestItemMod.MOD_ID)
@@ -24,10 +26,23 @@ public class TestItemMod {
     public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("test_block", p -> p.mapColor(MapColor.STONE));
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("test_block", EXAMPLE_BLOCK);
-        public static  DeferredItem<Item> TEST_ITEM = TestItemMod.ITEMS.registerSimpleItem("item_test");
+    public static final DeferredItem<Item> TEST_WEAPON =
+        ITEMS.registerItem(
+                "test_weapon",
+                props -> new Sword_test(
+                        props
+                                .stacksTo(1)
+                                .durability(250)
+                                .sword(ToolMaterial.NETHERITE, 8, -2.4F)
+                                .fireResistant()
+                )
+        );
+    
+    public static  DeferredItem<Item> TEST_ITEM = TestItemMod.ITEMS.registerSimpleItem("item_test");
+    
 
     public TestItemMod(IEventBus modEventBus) {
-
+        
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
 
@@ -38,6 +53,11 @@ public class TestItemMod {
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(TEST_ITEM.get());
+        
+            
+        }
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(TEST_WEAPON.get());
         
             
         }
