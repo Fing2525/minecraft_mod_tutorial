@@ -38,7 +38,7 @@ public class TestItemMod {
                 )
         );
     
-    public static  DeferredItem<Item> TEST_ITEM = TestItemMod.ITEMS.registerSimpleItem("item_test");
+    public static  DeferredItem<Item> TEST_ITEM = TestItemMod.ITEMS.registerItem("item_test", props -> new Item(props.stacksTo(2)));
     
 
     public TestItemMod(IEventBus modEventBus) {
